@@ -32,3 +32,9 @@ var/
 .lsp-session*
 gotools/
 eln-cache/
+/tldr/
+/tutorial/
+/request/
+/type-break
+/org-roam.db
+/ido.last
