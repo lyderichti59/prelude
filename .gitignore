@@ -30,3 +30,9 @@ transient/
 var/
 .cache/
 .lsp-session*
+/tldr/
+/tutorial/
+/request/
+/type-break
+/org-roam.db
+/ido.last
