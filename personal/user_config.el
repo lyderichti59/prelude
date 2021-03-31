@@ -1,3 +1,4 @@
+(package-install-selected-packages)
 ;;;;;;;;;;;;;;;;;;
 ;; NAVIGATION
 ;;;;;;;;;;;;;;;;;;
