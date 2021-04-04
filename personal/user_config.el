@@ -72,7 +72,7 @@
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 (setq neo-autorefresh t)
 (require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
+(global-set-key [f8] 'neotree-show)
 (setq neo-smart-open t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (setup-neo-theme)
