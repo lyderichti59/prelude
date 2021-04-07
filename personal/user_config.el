@@ -1,3 +1,17 @@
+;; START WITH PACKAGE INSTALLATION
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Installing all-the-icons fonts on the host's system
+(let ((font-dest (cl-case window-system
+                   (x  (concat (or (getenv "XDG_DATA_HOME")            ;; Default Linux install directories
+                                   (concat (getenv "HOME") "/.local/share"))
+                               "/fonts/"))
+                   (mac (concat (getenv "HOME") "/Library/Fonts/" ))
+                   (ns (concat (getenv "HOME") "/Library/Fonts/" )))))
+  (unless (file-exists-p (concat font-dest "all-the-icons.ttf"))
+    (all-the-icons-install-fonts t)))
+
+;; Install all the packages loaded from the custom.el
 (package-install-selected-packages)
 
 ;;;;;;;;;;;;;;;;;;
