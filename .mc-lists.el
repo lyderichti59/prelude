@@ -3,25 +3,28 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        cljr-raise-sexp
         counsel-M-x
+        indent-for-tab-command
+        minibuffer-keyboard-quit
+        mouse-set-region
         move-text-up
         org-cycle
         org-self-insert-command
         paredit-backward
+        paredit-backward-down
+        paredit-forward-delete
         paredit-forward-slurp-sexp
         paredit-open-round
+        paredit-open-square
         paredit-reindent-defun
+        repeat
         sp-backward-delete-char
         sp-kill-region
         transpose-sexps
         zop-to-char
-        indent-for-tab-command
-        minibuffer-keyboard-quit
-        mouse-set-region
-        paredit-forward-delete
-        paredit-open-square
-        repeat
         ))
 
 (setq mc/cmds-to-run-once
-      '())
+      '(
+        ))
