@@ -1,4 +1,15 @@
 (package-install-selected-packages)
+
+;;;;;;;;;;;;;;;;;;
+;; KEYBOARD
+;;;;;;;;;;;;;;;;;;
+(setq mac-right-option-modifier nil)
+
+;;;;;;;;;;;;;;;;;;
+;; HOST
+;;;;;;;;;;;;;;;;;;
+(setq desktop (if (file-exists-p "~/Bureau/") "~/Bureau/" "~/Desktop/"))
+
 ;;;;;;;;;;;;;;;;;;
 ;; NAVIGATION
 ;;;;;;;;;;;;;;;;;;
@@ -14,9 +25,9 @@
 (defun update-org-files ()
   (interactive)
   (setq org-agenda-files
-        (find-lisp-find-files "~/Bureau/braindump" "\.org$")))
+        (find-lisp-find-files (concat desktop "braindump") "\.org$")))
 (update-org-files)
-(setq org-directory "~/Bureau/braindump/")
+(setq org-directory (concat desktop "braindump"))
 (setq org-replace-disputed-keys 1)
 (add-hook 'org-shiftup-final-hook 'windmove-up)
 (add-hook 'org-shiftleft-final-hook 'windmove-left)
@@ -51,7 +62,7 @@
   :hook
   (after-init . org-roam-mode)
   :custom
-  (org-roam-directory "~/Bureau/braindump/public")
+  (org-roam-directory (concat desktop "braindump/public"))
   :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
@@ -202,7 +213,7 @@ server-after-make-frame-functions to use Fira Code with emacs --daemon and emacs
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 ;; Note taking with a shortcut
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/Bureau/braindump/private/random.org")))
+(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file (concat desktop "braindump/private/random.org"))))
 
 ;; DOTFILES
 ;;;;;;;;;;;;;;;;;;;;;;;
