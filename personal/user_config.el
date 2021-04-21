@@ -25,6 +25,46 @@
 (setq desktop (if (file-exists-p "~/Bureau/") "~/Bureau/" "~/Desktop/"))
 
 ;;;;;;;;;;;;;;;;;;
+;; UI
+;;;;;;;;;;;;;;;;;;
+
+;; Beautiful modeline on the bottom (less verbose than the default one and
+;; supports GUI components)
+(defun setup-doom-modeline-icons (&optional frame)
+  "This function updates the modeline and makes GUI Icons use icons when possible.
+   Note : To make this function run on every frame creation, add it to :
+   after-make-frame-functions variable"
+  (with-selected-frame (or frame (selected-frame))
+    (setq doom-modeline-icon (display-graphic-p))))
+
+(use-package doom-modeline
+  :ensure t
+  :custom (doom-modeline-height 15)
+  :init
+  (doom-modeline-mode 1)
+  (add-hook 'after-make-frame-functions 'setup-doom-modeline-icons))
+
+
+;; Having short description beside commands when `M-x`
+(use-package ivy-rich
+  :init (ivy-rich-mode 1))
+
+;; Enhances the knowledge base views
+(use-package helpful
+  :ensure t
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+
+(use-package counsel-projectile
+  :config (counsel-projectile-mode))
+
+;;;;;;;;;;;;;;;;;;
 ;; NAVIGATION
 ;;;;;;;;;;;;;;;;;;
 
@@ -59,7 +99,6 @@
     (backward-sexp)
     (set-mark-command nil)
     (forward-sexp))
-
   (let ((text (buffer-substring-no-properties (region-beginning)
                                               (region-end))))
     (with-current-buffer "*ielm*"
@@ -68,7 +107,6 @@
     (deactivate-mark)))
 
 (define-key org-mode-map (kbd "C-c C-e") 'efs/ielm-send-line-or-region)
-
 
 ;; Org-roam
 (use-package org-roam
@@ -85,31 +123,34 @@
               (("C-c n i" . org-roam-insert))
               (("C-c n I" . org-roam-insert-immediate))))
 (use-package org-roam-protocol
-  :config
-  )
+  :config)
 
 
 ;; Neotree (File tree)
-(defun setup-neo-theme ()
+(defun setup-neo-theme (&optional frame)
   "This function updates Neotree theming when Running in GUI Emacs.
    Note : To make this function run on every frame creation, add it to :
-   server-after-make-frame-hook custom variable"
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+   after-make-frame-functions custom variable"
+  (with-selected-frame (or frame (selected-frame))
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
 (setq neo-autorefresh t)
 (require 'neotree)
 (global-set-key [f8] 'neotree-show)
 (setq neo-smart-open t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (setup-neo-theme)
-
+(add-hook 'after-make-frame-functions 'setup-neo-theme)
 
 ;;;;;;;;;;;;;;;;;;
 ;; TEXT EDITING
 ;;;;;;;;;;;;;;;;;;
 
-;; Line number fix when zooming
-(eval-after-load "linum"
-  '(set-face-attribute 'linum nil :height 100))
+(dolist (mode '(org-mode-hook
+                neotree-mode-hook
+                term-mode-hook
+                eshell-mode-hook
+                shell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; YASnippet integration within hippie
 (add-to-list 'hippie-expand-try-functions-list 'yas-hippie-try-expand)
@@ -123,12 +164,15 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 ;; This works when using emacs --daemon + emacsclient
-(defun setup-firacode-font ()
+(defun setup-firacode-font (&optional frame)
   "This function aims at being added to
-server-after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
-  (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol"))
+after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
+  (with-selected-frame (or frame (selected-frame))
+    (set-fontset-font t '(#Xe100 . #Xe16f) "Fira Code Symbol")
+    (when (featurep 'doom-modeline)
+      (set-fontset-font t #Xe161 nil))))
 (setup-firacode-font)
-
+(add-hook 'after-make-frame-functions 'setup-firacode-font)
 
 ;; Multiple cursor configuration
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -178,13 +222,13 @@ server-after-make-frame-functions to use Fira Code with emacs --daemon and emacs
 
 (defun unset-paredit-C-arrows ()
   ;; <C-right> (translated from <C-S-right>) runs paredit-forward-slurp-sexp
-  (keymap-unset-key [C-right] "paredit-mode") ;; It is still bound to C-)
+  (keymap-unset-key (kbd "C-<right>") "paredit-mode") ;; It is still bound to C-)
   ;; <C-left> (translated from <C-S-left>) runs command paredit-forward-barf-sexp
-  (keymap-unset-key [C-left] "paredit-mode") ;; It is still bound to C-}
+  (keymap-unset-key (kbd "C-<left>") "paredit-mode") ;; It is still bound to C-}
   ;; <C-M-right> runs paredit-backward-barf-sexp
-  (keymap-unset-key [C-M-right] "paredit-mode") ;; It is still bound to C-{, ESC <C-right>.
+  (keymap-unset-key (kbd "C-M-<right>") "paredit-mode") ;; It is still bound to C-{, ESC <C-right>.
   ;; <C-M-left> runs the command paredit-backward-slurp-sexp
-  (keymap-unset-key [C-M-left] "paredit-mode")) ;; It is still bound to C-(, ESC <C-left>.
+  (keymap-unset-key (kbd "C-M-<left>") "paredit-mode")) ;; It is still bound to C-(, ESC <C-left>.
 
 ;; Enable clj-kondo through flycheck to lint clojure code
 (require 'flycheck-clj-kondo)
