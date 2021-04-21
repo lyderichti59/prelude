@@ -3,7 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(highlight ((t (:background "#111111" :foreground nil))))
+ '(lsp-face-highlight-read ((t (:inherit highlight)))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -31,6 +32,8 @@
      (woman . "^")))
  '(js-indent-level 2)
  '(js-jsx-syntax t)
+ '(lsp-enable-symbol-highlighting t)
+ '(lsp-symbol-highlighting-skip-current nil)
  '(neo-window-fixed-size nil)
  '(org-agenda-custom-commands
    '(("w" "Agenda and URGENT, WIP, NEXT"
