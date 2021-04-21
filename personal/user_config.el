@@ -190,6 +190,9 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 (add-to-list 'auto-mode-alist '("\\.js\\'"    . js-mode))
 (global-set-key (kbd "C-S-k") 'fixup-whitespace)
 
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
+
 ;; CLOJURE PROGRAMMING
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -230,29 +233,31 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   ;; <C-M-left> runs the command paredit-backward-slurp-sexp
   (keymap-unset-key (kbd "C-M-<left>") "paredit-mode")) ;; It is still bound to C-(, ESC <C-left>.
 
-;; Enable clj-kondo through flycheck to lint clojure code
-(require 'flycheck-clj-kondo)
-;; Enable clj-refactor when editing clojure code
-(require 'clj-refactor)
 (defun my-clojure-mode-hook ()
-  (cider-mode 1)
-  (clj-refactor-mode 1)
-  (yas-minor-mode 1) ; for adding require/use/import statements
+  (lsp-mode 1)
   (paredit-mode 1)
+  (unset-paredit-C-arrows)
   (rainbow-delimiters-mode 1)
   (aggressive-indent-mode 1)
-  (setq-default cursor-type 'bar)
-  (unset-paredit-C-arrows)
-  ;; This choice of keybindingn leaves cider-macroexpand-1 unbound
-  (cljr-add-keybindings-with-prefix "C-c C-m")
-
-  ;;Static source code analysis without a REPL (relying on CLJ-Kondo)
-  (anakondo-minor-mode 0)
-  )
+  (setq-default cursor-type 'bar))
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
+(add-hook 'clojurescript-mode-hook #'my-clojure-mode-hook)
+(add-hook 'clojuresc-mode-hook #'my-clojure-mode-hook)
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      treemacs-space-between-root-nodes nil
+      company-minimum-prefix-length 1
+      lsp-lens-enable t
+      lsp-signature-auto-activate nil
+      lsp-enable-file-watchers nil
+      ;lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+      ;lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+      )
+
 
 ;; WEB PROGRAMMING
 ;;;;;;;;;;;;;;;;;;;;;;
