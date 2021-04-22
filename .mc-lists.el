@@ -5,6 +5,7 @@
       '(
         cljr-raise-sexp
         counsel-M-x
+        fixup-whitespace
         indent-for-tab-command
         minibuffer-keyboard-quit
         mouse-set-region
@@ -13,11 +14,22 @@
         org-self-insert-command
         paredit-backward
         paredit-backward-down
+        paredit-backward-kill-word
+        paredit-backward-up
+        paredit-close-round
+        paredit-doublequote
+        paredit-forward
         paredit-forward-delete
+        paredit-forward-down
+        paredit-forward-kill-word
         paredit-forward-slurp-sexp
+        paredit-forward-up
+        paredit-meta-doublequote
         paredit-open-round
         paredit-open-square
         paredit-reindent-defun
+        paredit-semicolon
+        paredit-splice-sexp
         repeat
         sp-backward-delete-char
         sp-kill-region
