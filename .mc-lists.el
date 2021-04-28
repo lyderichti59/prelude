@@ -7,6 +7,7 @@
         counsel-M-x
         fixup-whitespace
         indent-for-tab-command
+        kill-sexp
         minibuffer-keyboard-quit
         mouse-set-region
         move-text-up
