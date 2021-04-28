@@ -239,24 +239,27 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   (unset-paredit-C-arrows)
   (rainbow-delimiters-mode 1)
   (aggressive-indent-mode 1)
-  (setq-default cursor-type 'bar))
+  (setq-default cursor-type 'bar)
+
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024)
+        treemacs-space-between-root-nodes nil
+        company-minimum-prefix-length 1
+        lsp-lens-enable t
+        lsp-ui-sideline-enable nil
+        lsp-signature-auto-activate nil
+        lsp-enable-file-watchers nil
+        lsp-enable-on-type-formatting nil
+        lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+       ;lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+        )
+  )
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 (add-hook 'clojurescript-mode-hook #'my-clojure-mode-hook)
 (add-hook 'clojuresc-mode-hook #'my-clojure-mode-hook)
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
 (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode)
-
-(setq gc-cons-threshold (* 100 1024 1024)
-      read-process-output-max (* 1024 1024)
-      treemacs-space-between-root-nodes nil
-      company-minimum-prefix-length 1
-      lsp-lens-enable t
-      lsp-signature-auto-activate nil
-      lsp-enable-file-watchers nil
-      ;lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
-      ;lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
-      )
 
 
 ;; WEB PROGRAMMING
