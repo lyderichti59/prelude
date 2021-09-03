@@ -13,3 +13,10 @@
   (package-install 'dracula-theme))
 
 (setq prelude-theme 'dracula)
+
+(defun customize-dracula ()
+  "Customize dracula theme"
+  (when (member 'dracula custom-enabled-themes)
+    (custom-theme-set-faces
+     'dracula
+     '(term ((t (:background nil)))))))
