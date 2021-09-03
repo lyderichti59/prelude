@@ -28,6 +28,8 @@
 ;; UI
 ;;;;;;;;;;;;;;;;;;
 
+(customize-dracula)
+
 ;; Beautiful modeline on the bottom (less verbose than the default one and
 ;; supports GUI components)
 (defun setup-doom-modeline-icons (&optional frame)
