@@ -143,6 +143,25 @@
   (setq org-agenda-files
         (find-lisp-find-files (concat desktop "braindump") "\.org$")))
 (update-org-files)
+
+(defface org-dont-underline-indents
+  '((t :underline nil))
+  "Avoid underlining of indentation.")
+
+(defun org-search-underlined-indents (limit)
+  "Match function for `org-dont-underline-indents'."
+  (let (ret face)
+    (while (and (setq ret (re-search-forward "^[[:space:]]+" limit t))
+                (or (null (setq face (plist-get (text-properties-at (match-beginning 0)) 'face)))
+                    (eq face 'org-dont-underline-indents))))
+    ret))
+
+(defun org-dont-underline-indents ()
+  "Remove underlining at indents."
+  (add-to-list 'org-font-lock-extra-keywords '(org-search-underlined-indents 0 'org-dont-underline-indents t) 'append))
+
+(add-hook 'org-font-lock-set-keywords-hook #'org-dont-underline-indents 'append)
+
 (setq org-directory (concat desktop "braindump"))
 (setq org-replace-disputed-keys 1)
 (add-hook 'org-shiftup-final-hook 'windmove-up)
