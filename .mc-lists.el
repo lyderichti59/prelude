@@ -12,6 +12,7 @@
         mouse-set-region
         move-text-up
         org-cycle
+        org-kill-line
         org-self-insert-command
         paredit-backward
         paredit-backward-down
