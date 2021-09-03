@@ -34,6 +34,8 @@
  '(js-jsx-syntax t)
  '(lsp-enable-symbol-highlighting t)
  '(lsp-symbol-highlighting-skip-current nil)
+ '(magit-diff-refine-hunk 'all)
+ '(magit-diff-refine-ignore-whitespace nil)
  '(neo-window-fixed-size nil)
  '(org-agenda-custom-commands
    '(("w" "Agenda and URGENT, WIP, NEXT"
