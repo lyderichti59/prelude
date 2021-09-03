@@ -67,19 +67,12 @@
     (cond
 ;; ((not (eq (file-remote-p (buffer-file-name)) nil))
 ;; "Remote")
-    ((or (string-equal "*" (substring (buffer-name) 0 1))
-         (memq major-mode '(magit-process-mode
-            magit-status-mode
-            magit-diff-mode
-            magit-log-mode
-            magit-file-mode
-            magit-blob-mode
-            magit-blame-mode)))
-     "Emacs")
     ((derived-mode-p 'prog-mode)
      "Editing")
     ((derived-mode-p 'dired-mode)
      "Dired")
+    ((derived-mode-p 'vterm-mode)
+     "Shells")
     ((memq major-mode '(helpful-mode
                 help-mode))
      "Help")
@@ -94,11 +87,19 @@
                 org-agenda-log-mode
                 diary-mode))
      "OrgMode")
+    ((or (string-equal "*" (substring (buffer-name) 0 1))
+         (memq major-mode '(magit-process-mode
+                            magit-status-mode
+                            magit-diff-mode
+                            magit-log-mode
+                            magit-file-mode
+                            magit-blob-mode
+                            magit-blame-mode)))
+     "Emacs")
     (t
      (centaur-tabs-get-group-name (current-buffer))))))
   :hook
   (dired-mode . centaur-tabs-local-mode)
-  (term-mode . centaur-tabs-local-mode)
   (calendar-mode . centaur-tabs-local-mode)
   (org-agenda-mode . centaur-tabs-local-mode)
   (helpful-mode . centaur-tabs-local-mode)
@@ -208,9 +209,7 @@
 
 (dolist (mode '(org-mode-hook
                 neotree-mode-hook
-                term-mode-hook
-                eshell-mode-hook
-                shell-mode-hook))
+                vterm-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; YASnippet integration within hippie
@@ -243,6 +242,34 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 (global-set-key (kbd "C-c M-h") 'mc/mark-all-in-region)
 (global-set-key (kbd "ESC <mouse-1>") 'mc/add-cursor-on-click)
 
+;;;;;;;;;;;
+;; SHELLS
+;;;;;;;;;;;
+(require 'vterm)
+(require 'vterm-toggle)
+
+(global-set-key [f1] 'vterm)
+(global-set-key [C-f1] 'vterm-toggle)
+(global-set-key [f2] 'vterm-toggle-cd)
+
+(defun display-buffer-above-selected (buffer alist)
+  (let ((window (cond
+                 ((get-buffer-window buffer (selected-frame))
+                  (get-buffer-window buffer (selected-frame)))
+                 ((window-in-direction 'above)
+                  (window-in-direction 'above))
+                 ((window-in-direction 'left)
+                  (window-in-direction 'left))
+                 (t (selected-window)))))
+    (window--display-buffer buffer window 'window alist
+                            display-buffer-mark-dedicated)
+    (select-window (get-buffer-window (buffer-name buffer)))))
+
+(defun find-file-above (path)
+  (if-let* ((buf (find-file-noselect path))
+            (window (display-buffer-above-selected buf nil)))
+      (select-window window)
+    (message "Failed to open file: %s" path)))
 
 ;;;;;;;;;;;;;;;;;;
 ;; PROGRAMMING
