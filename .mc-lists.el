@@ -3,11 +3,15 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        cider-eval-last-sexp-and-replace
         cljr-raise-sexp
         counsel-M-x
+        delete-indentation
         fixup-whitespace
+        ignore
         indent-for-tab-command
         kill-sexp
+        magit-copy-buffer-revision
         minibuffer-keyboard-quit
         mouse-set-region
         move-text-up
@@ -26,19 +30,31 @@
         paredit-forward-kill-word
         paredit-forward-slurp-sexp
         paredit-forward-up
+        paredit-kill
         paredit-meta-doublequote
+        paredit-open-curly
         paredit-open-round
         paredit-open-square
+        paredit-raise-sexp
         paredit-reindent-defun
         paredit-semicolon
         paredit-splice-sexp
         repeat
         sp-backward-delete-char
+        sp-forward-sexp
         sp-kill-region
+        swiper
+        transpose-pair
         transpose-sexps
         zop-to-char
         ))
 
 (setq mc/cmds-to-run-once
       '(
+        cider-eval-defun-at-point
+        dap-tooltip-mouse-motion
+        handle-switch-frame
+        keyboard-escape-quit
+        lsp-ui-doc--handle-mouse-movement
+        previous-buffer
         ))

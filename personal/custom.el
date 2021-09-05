@@ -12,10 +12,18 @@
  ;; If there is more than one, they won't work right.
  '(auto-image-file-mode t)
  '(blink-cursor-mode 1)
+ '(c-default-style
+   '((java-mode . "java")
+     (clojure-mode . "java")
+     (awk-mode . "awk")
+     (other . "gnu")))
+ '(c-old-style-variable-behavior t)
+ '(clojure-align-forms-automatically t)
  '(column-number-mode t)
  '(cursor-type 'bar)
  '(custom-safe-themes
    '("81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "57e3f215bef8784157991c4957965aa31bac935aca011b29d7d8e113a652b693" "2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
+ '(ediff-split-window-function 'split-window-horizontally)
  '(fira-code-mode-disabled-ligature '("[]" "#{" "#(" "#_" "#_(" "x"))
  '(fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
  '(ispell-dictionary "en")
@@ -95,7 +103,9 @@ Captured On: %U")))
      (sequence "TODO(t)" "NEXT(n)" "WIP(w)" "DONE(d)")))
  '(org-use-fast-todo-selection 'expert)
  '(package-selected-packages
-   '(vterm-toggle vterm centaur-tabs windresize counsel-projectile helpful doom-modeline lsp-treemacs nix-mode rjsx-mode php-mode tldr helm-projectile helm async avy bind-key dash dash-functional gh git-commit ht inflections logito lsp-mode markdown-mode marshal multiple-cursors pcache prescient transient with-editor rust-mode org-roam visual-regexp-steroids visual-regexp all-the-icons-dired all-the-icons-ivy-rich all-the-icons neotree tagedit scss-mode anakondo docker-compose-mode aggressive-indent pretty-symbols fira-code-mode use-package ta clojure-snippets afternoon-theme dracula-theme flycheck-clj-kondo command-log-mode clj-refactor cider clojure-mode-extra-font-locking clojure-mode yaml-mode web-mode lsp-ui json-mode rainbow-mode elisp-slime-nav rainbow-delimiters company counsel swiper ivy-prescient ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
+   '(image+ plantuml-mode dockerfile-mode csv-mode lsp-java js2-mode windresize vterm-toggle vterm centaur-tabs counsel-projectile helpful doom-modeline lsp-treemacs nix-mode rjsx-mode php-mode tldr helm-projectile helm async avy bind-key dash dash-functional gh git-commit ht inflections logito lsp-mode markdown-mode marshal multiple-cursors pcache prescient transient with-editor rust-mode org-roam visual-regexp-steroids visual-regexp all-the-icons-dired all-the-icons-ivy-rich all-the-icons neotree tagedit scss-mode anakondo docker-compose-mode aggressive-indent pretty-symbols fira-code-mode use-package ta clojure-snippets afternoon-theme dracula-theme flycheck-clj-kondo command-log-mode clj-refactor cider clojure-mode-extra-font-locking clojure-mode yaml-mode web-mode lsp-ui json-mode rainbow-mode elisp-slime-nav rainbow-delimiters company counsel swiper ivy-prescient ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
+ '(plantuml-default-exec-mode 'jar)
+ '(plantuml-jar-path "/Users/lyderic.dutillieux/bin/plantuml.jar")
  '(prelude-flyspell nil)
  '(prelude-theme 'dracula-theme)
  '(projectile-globally-ignored-directories
