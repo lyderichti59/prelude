@@ -300,18 +300,34 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
+(defun fix-ediff-size ()
+  (with-selected-window (get-buffer-window "*Ediff Control Panel*")
+    (setq window-size-fixed t)
+    (window-resize (selected-window) (- 5 (window-total-height)) nil t)))
+
+(add-hook 'ediff-after-setup-windows-hook 'fix-ediff-size)
+
 ;; CLOJURE PROGRAMMING
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Define a way to move a form within a list
-(defun reverse-transpose-sexps (arg)
-  (interactive "*p")
-  (transpose-sexps (- arg))
-  ;; when transpose-sexps can no longer transpose, it throws an error and code
-  ;; below this line won't be executed. So, we don't have to worry about side
-  ;; effects of backward-sexp and forward-sexp.
-  (backward-sexp (1+ arg))
-  (forward-sexp 2))
+;; Toggling align forms
+(defun toggle-align-forms ()
+  (interactive)
+  (setq clojure-align-forms-automatically (not clojure-align-forms-automatically)))
+
+;; Toggling Edition mode
+(setq aggressive-editing-enabled 1)
+(defun toggle-aggressivity ()
+  (interactive)
+  (setq aggressive-editing-enabled (not aggressive-editing-enabled))
+  (setq clojure-align-forms-automatically aggressive-editing-enabled)
+  (aggressive-indent-mode aggressive-editing-enabled)
+  (whitespace-mode aggressive-editing-enabled)
+  (toggle-truncate-lines (not aggressive-editing-enabled)))
+
+(global-set-key (kbd "<f1>") 'toggle-aggressivity)
+
+(require 'sexp)
 
 ;; Shadowing a paredit
 
@@ -340,18 +356,25 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   ;; <C-M-left> runs the command paredit-backward-slurp-sexp
   (keymap-unset-key (kbd "C-M-<left>") "paredit-mode")) ;; It is still bound to C-(, ESC <C-left>.
 
+(require 'dap-java)
 (defun my-clojure-mode-hook ()
   (lsp-mode 1)
+  (lsp)
   (paredit-mode 1)
   (unset-paredit-C-arrows)
   (rainbow-delimiters-mode 1)
   (aggressive-indent-mode 1)
   (setq-default cursor-type 'bar)
 
-  (setq gc-cons-threshold (* 100 1024 1024)
-        read-process-output-max (* 1024 1024)
+  ;; Overriding  prelude keybindings
+  (define-key prelude-mode-map (kbd "C-S-<down>") 'transpose-pairs)
+  (define-key prelude-mode-map (kbd "C-S-<up>") 'reverse-transpose-pairs)
+
+  (setq gc-cons-threshold (* 400 1024 1024)
+        read-process-output-max (* 3 1024 1024)
         treemacs-space-between-root-nodes nil
         company-minimum-prefix-length 1
+        lsp-log-io nil
         lsp-lens-enable t
         lsp-ui-sideline-enable nil
         lsp-signature-auto-activate nil
@@ -386,7 +409,7 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 ;; Note taking with a shortcut
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file (concat desktop "braindump/private/random.org"))))
+(global-set-key (kbd "<f6>") (lambda() (find-file (concat desktop "braindump/private/random.org"))))
 
 ;; DOTFILES
 ;;;;;;;;;;;;;;;;;;;;;;;
