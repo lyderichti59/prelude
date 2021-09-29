@@ -73,12 +73,6 @@ by Prelude.")
 (defvar prelude-modules-file (expand-file-name "prelude-modules.el" prelude-personal-dir)
   "This file contains a list of modules that will be loaded by Prelude.")
 
-;; config changes made through the customize UI will be stored here
-(setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
-;; load default configuration
-(load custom-file)
-
-
 (unless (file-exists-p prelude-savefile-dir)
   (make-directory prelude-savefile-dir))
 
@@ -119,6 +113,12 @@ by Prelude.")
 (require 'prelude-mode)
 (require 'prelude-editor)
 (require 'prelude-global-keybindings)
+
+;; config changes made through the customize UI will be stored here
+(setq custom-file (expand-file-name "custom.el" prelude-personal-dir))
+;; load default configuration
+(load custom-file)
+
 
 ;; macOS specific settings
 (when (eq system-type 'darwin)
