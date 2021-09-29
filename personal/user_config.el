@@ -325,8 +325,6 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   (whitespace-mode aggressive-editing-enabled)
   (toggle-truncate-lines (not aggressive-editing-enabled)))
 
-(global-set-key (kbd "<f1>") 'toggle-aggressivity)
-
 (require 'sexp)
 
 ;; Shadowing a paredit
@@ -409,7 +407,11 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 ;; Note taking with a shortcut
-(global-set-key (kbd "<f6>") (lambda() (find-file (concat desktop "braindump/private/random.org"))))
+(defun open-notes ()
+  (interactive)
+  (find-file (concat desktop "braindump/private/random.org")))
+
+(global-set-key [f6] 'open-notes)
 
 ;; DOTFILES
 ;;;;;;;;;;;;;;;;;;;;;;;
