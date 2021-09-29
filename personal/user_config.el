@@ -307,6 +307,17 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 
 (add-hook 'ediff-after-setup-windows-hook 'fix-ediff-size)
 
+;; NixOS
+;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-c C-S-n") 'helm-nixos-options)
+
+(add-hook 'after-init-hook 'global-company-mode)
+(with-eval-after-load 'company
+  (add-to-list 'company-backends 'company-nixos-options)
+  (global-set-key (kbd "TAB") #'company-indent-or-complete-common))
+
+
 ;; CLOJURE PROGRAMMING
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
