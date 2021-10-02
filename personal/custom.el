@@ -110,8 +110,10 @@ Captured On: %U")))
  '(plantuml-jar-path "/Users/lyderic.dutillieux/bin/plantuml.jar")
  '(prelude-flyspell nil)
  '(prelude-theme 'dracula-theme)
+ '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".clangd" "node_modules" ".next"))
+ '(projectile-indexing-method 'native)
  '(safe-local-variable-values
    '((cider-preferred-build-tool . shadow-cljs)
      (cider-shadow-default-options . "app")
