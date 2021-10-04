@@ -6,8 +6,10 @@
         cider-eval-last-sexp-and-replace
         cljr-raise-sexp
         counsel-M-x
+        crux-move-beginning-of-line
         delete-indentation
         fixup-whitespace
+        forward-sexp
         ignore
         indent-for-tab-command
         kill-sexp
@@ -33,6 +35,7 @@
         paredit-forward-up
         paredit-kill
         paredit-meta-doublequote
+        paredit-newline
         paredit-open-curly
         paredit-open-round
         paredit-open-square
