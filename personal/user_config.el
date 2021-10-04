@@ -307,6 +307,14 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 
 (add-hook 'ediff-after-setup-windows-hook 'fix-ediff-size)
 
+(defun xml-pretty-print ()
+  (interactive)
+  (mark-whole-buffer)
+  (sgml-pretty-print (region-beginning) (region-end)))
+
+(add-hook 'nxml-mode-hook (lambda () (local-set-key (kbd "M-q") #'xml-pretty-print)))
+
+
 ;; NixOS
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
