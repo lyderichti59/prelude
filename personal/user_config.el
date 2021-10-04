@@ -364,6 +364,7 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
       (message  "%s unbound for %s" key keymap))))
 
 (defun unset-paredit-C-arrows ()
+  (interactive)
   ;; <C-right> (translated from <C-S-right>) runs paredit-forward-slurp-sexp
   (keymap-unset-key (kbd "C-<right>") "paredit-mode") ;; It is still bound to C-)
   ;; <C-left> (translated from <C-S-left>) runs command paredit-forward-barf-sexp
@@ -373,24 +374,30 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   ;; <C-M-left> runs the command paredit-backward-slurp-sexp
   (keymap-unset-key (kbd "C-M-<left>") "paredit-mode")) ;; It is still bound to C-(, ESC <C-left>.
 
-(require 'dap-java)
 (defun my-clojure-mode-hook ()
-  (lsp-mode 1)
   (lsp)
+  (lsp-mode 1)
+  (lsp-ui-mode 0)
   (paredit-mode 1)
   (unset-paredit-C-arrows)
   (rainbow-delimiters-mode 1)
   (aggressive-indent-mode 1)
   (setq-default cursor-type 'bar)
 
+
   ;; Overriding  prelude keybindings
   (define-key prelude-mode-map (kbd "C-S-<down>") 'transpose-pairs)
   (define-key prelude-mode-map (kbd "C-S-<up>") 'reverse-transpose-pairs)
 
-  (setq gc-cons-threshold (* 400 1024 1024)
-        read-process-output-max (* 3 1024 1024)
+  ;;Conveninent keybindings
+  (define-key clojure-mode-map (kbd "C-c C-r C-r") 'lsp-clojure-add-missing-libspec)
+
+  (setq comment-column nil
+        gc-cons-threshold (* 64 1024 1024)
+        read-process-output-max (* 2 1024 1024)
         treemacs-space-between-root-nodes nil
         company-minimum-prefix-length 1
+        lsp-idle-delay 0.500
         lsp-log-io nil
         lsp-lens-enable t
         lsp-ui-sideline-enable nil
