@@ -445,3 +445,7 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   :mode "\\.nix\\'"
   :config
   (add-hook 'nix-mode-hook 'fira-code-mode))
+
+;; CSV FILES
+;;;;;;;;;;;;;;;;;;;;;;;;
+(require 'csv-highlight)
