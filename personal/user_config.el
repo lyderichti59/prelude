@@ -126,6 +126,8 @@
 (use-package counsel-projectile
   :config (counsel-projectile-mode))
 
+(add-hook 'magit-process-mode-hook 'goto-address-mode)
+
 ;;;;;;;;;;;;;;;;;;
 ;; NAVIGATION
 ;;;;;;;;;;;;;;;;;;
