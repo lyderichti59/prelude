@@ -383,7 +383,6 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   (paredit-mode 1)
   (unset-paredit-C-arrows)
   (rainbow-delimiters-mode 1)
-  (aggressive-indent-mode 1)
   (setq-default cursor-type 'bar)
 
 
@@ -409,7 +408,13 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
         lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
        ;lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
         )
-  )
+
+  (if (and (stringp buffer-file-name)
+           (or (string-match "\\.edn\\'" buffer-file-name)
+               (string-match "\\api.clj\\'" buffer-file-name)))
+      (progn (whitespace-turn-off)
+             (toggle-truncate-lines nil))
+    (aggressive-indent-mode)))
 
 (add-hook 'clojure-mode-hook #'my-clojure-mode-hook)
 (add-hook 'clojurescript-mode-hook #'my-clojure-mode-hook)
