@@ -327,6 +327,12 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   (add-to-list 'company-backends 'company-nixos-options)
   (global-set-key (kbd "TAB") #'company-indent-or-complete-common))
 
+(add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+                  :major-modes '(nix-mode)
+                  :server-id 'nix))
+
 
 ;; CLOJURE PROGRAMMING
 ;;;;;;;;;;;;;;;;;;;;;;;;
