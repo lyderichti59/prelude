@@ -302,6 +302,11 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 ;; NixOS
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package nix-mode
+  :mode "\\.nix\\'"
+  :config
+  (add-hook 'nix-mode-hook 'fira-code-mode))
+
 (global-set-key (kbd "C-c C-S-n") 'helm-nixos-options)
 
 (add-hook 'after-init-hook 'global-company-mode)
@@ -318,21 +323,6 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 
 ;; CLOJURE PROGRAMMING
 ;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; Toggling align forms
-(defun toggle-align-forms ()
-  (interactive)
-  (setq clojure-align-forms-automatically (not clojure-align-forms-automatically)))
-
-;; Toggling Edition mode
-(setq aggressive-editing-enabled 1)
-(defun toggle-aggressivity ()
-  (interactive)
-  (setq aggressive-editing-enabled (not aggressive-editing-enabled))
-  (setq clojure-align-forms-automatically aggressive-editing-enabled)
-  (aggressive-indent-mode aggressive-editing-enabled)
-  (whitespace-mode aggressive-editing-enabled)
-  (toggle-truncate-lines (not aggressive-editing-enabled)))
 
 (require 'sexp)
 
@@ -433,13 +423,6 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
   (find-file (concat desktop "braindump/private/random.org")))
 
 (global-set-key [f6] 'open-notes)
-
-;; DOTFILES
-;;;;;;;;;;;;;;;;;;;;;;;
-(use-package nix-mode
-  :mode "\\.nix\\'"
-  :config
-  (add-hook 'nix-mode-hook 'fira-code-mode))
 
 ;; CSV FILES
 ;;;;;;;;;;;;;;;;;;;;;;;;
