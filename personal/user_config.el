@@ -191,24 +191,6 @@
 
 (define-key org-mode-map (kbd "C-c C-e") 'efs/ielm-send-line-or-region)
 
-;; Org-roam
-(use-package org-roam
-  :ensure t
-  :hook
-  (after-init . org-roam-mode)
-  :custom
-  (org-roam-directory (concat desktop "braindump/public"))
-  :bind (:map org-roam-mode-map
-              (("C-c n l" . org-roam)
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n g" . org-roam-graph))
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert))
-              (("C-c n I" . org-roam-insert-immediate))))
-(use-package org-roam-protocol
-  :config)
-
-
 ;; Neotree (File tree)
 (defun setup-neo-theme (&optional frame)
   "This function updates Neotree theming when Running in GUI Emacs.
