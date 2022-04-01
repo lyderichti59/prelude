@@ -5,6 +5,7 @@
       '(
         cider-eval-last-sexp-and-replace
         cljr-raise-sexp
+        company-indent-or-complete-common
         counsel-M-x
         crux-move-beginning-of-line
         delete-indentation
@@ -61,4 +62,5 @@
         keyboard-escape-quit
         lsp-ui-doc--handle-mouse-movement
         previous-buffer
+        scroll-bar-toolkit-scroll
         ))
