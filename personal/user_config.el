@@ -326,40 +326,11 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
 
 (require 'sexp)
 
-;; Shadowing a paredit
-
-(defun get-key-combo (key)
-  "Just return the key combo entered by the user"
-  (interactive "kKey combo: ") key)
-
-(defun keymap-unset-key (key keymap)
-  "Remove binding of KEY in a keymap
-   KEY is a string or vector representing a sequence of keystrokes."
-  (interactive
-   (list (call-interactively #'get-key-combo)
-         (completing-read "Which map: " minor-mode-map-alist nil t)))
-  (let ((map (cdr (assoc (intern keymap) minor-mode-map-alist))))
-    (when map
-      (define-key map key nil)
-      (message  "%s unbound for %s" key keymap))))
-
-(defun unset-paredit-C-arrows ()
-  (interactive)
-  ;; <C-right> (translated from <C-S-right>) runs paredit-forward-slurp-sexp
-  (keymap-unset-key (kbd "C-<right>") "paredit-mode") ;; It is still bound to C-)
-  ;; <C-left> (translated from <C-S-left>) runs command paredit-forward-barf-sexp
-  (keymap-unset-key (kbd "C-<left>") "paredit-mode") ;; It is still bound to C-}
-  ;; <C-M-right> runs paredit-backward-barf-sexp
-  (keymap-unset-key (kbd "C-M-<right>") "paredit-mode") ;; It is still bound to C-{, ESC <C-right>.
-  ;; <C-M-left> runs the command paredit-backward-slurp-sexp
-  (keymap-unset-key (kbd "C-M-<left>") "paredit-mode")) ;; It is still bound to C-(, ESC <C-left>.
-
 (defun my-clojure-mode-hook ()
   (lsp)
   (lsp-mode 1)
   (lsp-ui-mode 0)
   (paredit-mode 1)
-  (unset-paredit-C-arrows)
   (rainbow-delimiters-mode 1)
   (setq-default cursor-type 'bar)
 
