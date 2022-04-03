@@ -1,7 +1,6 @@
 ;; START WITH PACKAGE INSTALLATION
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'user_font)
 ;; Install all the packages loaded from the custom.el
 (package-install-selected-packages)
 
@@ -252,14 +251,37 @@
 
 (add-hook 'nxml-mode-hook (lambda () (local-set-key (kbd "M-q") #'xml-pretty-print)))
 
+(setq-default comment-column nil
+              gc-cons-threshold (* 64 1024 1024)
+              read-process-output-max (* 2 1024 1024)
+              treemacs-space-between-root-nodes nil
+              company-minimum-prefix-length 1
+              lsp-idle-delay 0.500
+              lsp-log-io nil
+              lsp-lens-enable t
+              lsp-ui-sideline-enable nil
+              lsp-signature-auto-activate nil
+              lsp-enable-file-watchers nil
+              lsp-enable-on-type-formatting nil
+              lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
+                                        ;lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
+              )
+
 
 ;; NixOS
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun my-nix-mode-hook ()
+  (lsp)
+  (lsp-mode 1)
+  (lsp-ui-mode 0)
+  (fira-code-mode 1)
+)
+
 (use-package nix-mode
   :mode "\\.nix\\'"
   :config
-  (add-hook 'nix-mode-hook 'fira-code-mode))
+  (add-hook 'nix-mode-hook 'my-nix-mode-hook))
 
 (global-set-key (kbd "C-c C-S-n") 'helm-nixos-options)
 
@@ -295,22 +317,6 @@
 
   ;;Conveninent keybindings
   (define-key clojure-mode-map (kbd "C-c C-r C-r") 'lsp-clojure-add-missing-libspec)
-
-  (setq comment-column nil
-        gc-cons-threshold (* 64 1024 1024)
-        read-process-output-max (* 2 1024 1024)
-        treemacs-space-between-root-nodes nil
-        company-minimum-prefix-length 1
-        lsp-idle-delay 0.500
-        lsp-log-io nil
-        lsp-lens-enable t
-        lsp-ui-sideline-enable nil
-        lsp-signature-auto-activate nil
-        lsp-enable-file-watchers nil
-        lsp-enable-on-type-formatting nil
-        lsp-enable-indentation nil ; uncomment to use cider indentation instead of lsp
-       ;lsp-enable-completion-at-point nil ; uncomment to use cider completion instead of lsp
-        )
 
   (if (and (stringp buffer-file-name)
            (or (string-match "\\.edn\\'" buffer-file-name)

@@ -49,6 +49,3 @@ after-make-frame-functions to use Fira Code with emacs --daemon and emacsclient"
       (set-fontset-font t #Xe161 nil))))
 (setup-firacode-font)
 (add-hook 'after-make-frame-functions 'setup-firacode-font)
-
-
-(provide 'user_font)
