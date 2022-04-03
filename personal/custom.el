@@ -31,7 +31,7 @@
    '("81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "57e3f215bef8784157991c4957965aa31bac935aca011b29d7d8e113a652b693" "2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
  '(ediff-split-window-function 'split-window-horizontally)
  '(exec-path-from-shell-variables
-   '("PATH" "MANPATH" "LEIN_USERNAME" "LEIN_PASSWORD" "NIX_PATH"))
+   '("PATH" "MANPATH" "LEIN_USERNAME" "LEIN_PASSWORD" "NIX_PATH" "NOTMUCH_CONFIG" "PASSWORD_STORE_DIR"))
  '(fira-code-mode-disabled-ligature '("[]" "#{" "#(" "#_" "#_(" "x"))
  '(fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x"))
  '(ispell-dictionary "en")
@@ -53,7 +53,9 @@
  '(lsp-symbol-highlighting-skip-current nil)
  '(magit-diff-refine-hunk 'all)
  '(magit-diff-refine-ignore-whitespace nil)
+ '(mm-text-html-renderer 'shr)
  '(neo-window-fixed-size nil)
+ '(notmuch-search-oldest-first nil)
  '(org-agenda-custom-commands
    '(("w" "Agenda and URGENT, WIP, NEXT"
       ((agenda "" nil)
