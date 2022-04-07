@@ -18,8 +18,12 @@
 ;; UI
 ;;;;;;;;;;;;;;;;;;
 
-(customize-dracula)
+(require 'whitespace)
+(setq-default fill-column 120)
+(setq-default whitespace-line-column 120)
 
+(customize-dracula)
+(global-whitespace-mode 0)
 ;; Beautiful modeline on the bottom (less verbose than the default one and
 ;; supports GUI components)
 (defun setup-doom-modeline-icons (&optional frame)

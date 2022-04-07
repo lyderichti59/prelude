@@ -68,7 +68,7 @@
     (guru-mode +1)
     (diminish 'guru-mode))
   (smartparens-mode +1)
-  (prelude-enable-whitespace)
+  ;(prelude-enable-whitespace)
   (prelude-local-comment-auto-fill))
 
 (setq prelude-prog-mode-hook 'prelude-prog-mode-defaults)
