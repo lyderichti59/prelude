@@ -186,9 +186,14 @@
    after-make-frame-functions custom variable"
   (with-selected-frame (or frame (selected-frame))
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
+
 (setq neo-autorefresh t)
 (require 'neotree)
+
 (global-set-key [f8] 'neotree-show)
+(cl-case window-system
+  (mac (setq neo-default-system-application "open"))
+  (ns (setq neo-default-system-application "open")))
 (setq neo-smart-open t)
 (setq projectile-switch-project-action 'neotree-projectile-action)
 (setup-neo-theme)
