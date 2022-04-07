@@ -178,9 +178,26 @@
 (setup-neo-theme)
 (add-hook 'after-make-frame-functions 'setup-neo-theme)
 
-(persp-mode)
+(require 'perspective)
 (require 'persp-projectile)
+(persp-mode)
+
+(defun my/persp-neo ()
+  "Make NeoTree follow the perspective"
+  (interactive)
+  (let ((cw (selected-window))
+        (path (buffer-file-name))) ;;save current window/buffer
+    (progn
+      (when (and (fboundp 'projectile-project-p)
+                 (projectile-project-p)
+                 (fboundp 'projectile-project-root))
+        (neotree-dir (projectile-project-root)))
+      (neotree-find path))
+    (select-window cw)))
+
+(add-hook 'persp-switch-hook 'my/persp-neo)
 (define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
+
 
 
 ;;;;;;;;;;;;;;;;;;
