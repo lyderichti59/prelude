@@ -178,6 +178,11 @@
 (setup-neo-theme)
 (add-hook 'after-make-frame-functions 'setup-neo-theme)
 
+(persp-mode)
+(require 'persp-projectile)
+(define-key projectile-mode-map (kbd "s-s") 'projectile-persp-switch-project)
+
+
 ;;;;;;;;;;;;;;;;;;
 ;; TEXT EDITING
 ;;;;;;;;;;;;;;;;;;
@@ -203,6 +208,7 @@
 ;;;;;;;;;;;
 (require 'vterm)
 (require 'vterm-toggle)
+(setq vterm-max-scrollback 100000)
 
 (global-set-key [f1] 'vterm)
 (global-set-key [C-f1] 'vterm-toggle)
