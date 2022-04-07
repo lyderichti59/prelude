@@ -353,7 +353,10 @@
   (interactive)
   (find-file (concat desktop "braindump/private/random.org")))
 
+(load (concat user-emacs-directory "personal/sublima.el"))
+
 (global-set-key [f6] 'open-notes)
+(global-set-key [f7] 'sublima-scratch)
 
 ;; CSV FILES
 ;;;;;;;;;;;;;;;;;;;;;;;;
