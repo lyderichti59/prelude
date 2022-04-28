@@ -21,6 +21,8 @@
         org-cycle
         org-delete-char
         org-kill-line
+        org-metaleft
+        org-metaright
         org-self-insert-command
         paredit-backward
         paredit-backward-down
