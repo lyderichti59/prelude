@@ -54,6 +54,7 @@
  '(magit-diff-refine-hunk 'all)
  '(magit-diff-refine-ignore-whitespace nil)
  '(mm-text-html-renderer 'shr)
+ '(mml-attach-file-at-the-end t)
  '(neo-window-fixed-size nil)
  '(notmuch-search-oldest-first nil)
  '(org-agenda-custom-commands
@@ -135,6 +136,7 @@ Captured On: %U")))
                         t)
                        "\\_>")
               1 'font-lock-variable-name-face)))))
+ '(send-mail-function 'sendmail-send-it)
  '(size-indication-mode t)
  '(sp-base-key-bindings 'paredit)
  '(sp-override-key-bindings
