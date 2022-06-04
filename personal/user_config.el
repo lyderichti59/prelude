@@ -118,6 +118,22 @@
 
 (add-hook 'magit-process-mode-hook 'goto-address-mode)
 
+;; Goto bookmark while in a minibuffer
+
+(defun goto-bookmark (BOOKMARK-NAME)
+  (interactive (list (bookmark-completing-read "Insert bookmark location")))1
+  (let* ((bookmark-path (bookmark-location BOOKMARK-NAME))
+         (bookmark-dir (file-name-directory bookmark-path))
+         (bookmark-file (file-name-nondirectory bookmark-path)))
+    (ivy--cd bookmark-dir)
+    (insert bookmark-file)))
+
+(define-key ivy-minibuffer-map (kbd "C-x r b") 'goto-bookmark)
+(define-key ivy-minibuffer-map (kbd "M-o") 'ivy-dispatching-done)
+(define-key ivy-minibuffer-map (kbd "TAB") 'ivy-partial)
+(define-key prelude-mode-map (kbd "M-o") nil)
+
+
 ;;;;;;;;;;;;;;;;;;
 ;; NAVIGATION
 ;;;;;;;;;;;;;;;;;;
