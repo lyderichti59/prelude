@@ -3,7 +3,9 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-sexp
         cider-eval-last-sexp-and-replace
+        cider-repl-handle-shortcut
         cljr-raise-sexp
         company-indent-or-complete-common
         counsel-M-x
@@ -14,6 +16,7 @@
         ignore
         indent-for-tab-command
         kill-sexp
+        kmacro-end-or-call-macro
         magit-copy-buffer-revision
         minibuffer-keyboard-quit
         mouse-set-region

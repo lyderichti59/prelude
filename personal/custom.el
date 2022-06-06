@@ -68,7 +68,7 @@
       ((agenda "" nil)
        (alltodo "" nil))
       nil)))
- '(org-babel-load-languages '((emacs-lisp . t) (shell . t)))
+ '(org-babel-load-languages '((emacs-lisp . t) (shell . t) (clojure . t) (sql . t)))
  '(org-capture-templates
    `(("p" "Protocol" entry
       (file+headline ,(concat org-directory "random.org")
@@ -125,7 +125,23 @@ Captured On: %U")))
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".clangd" "node_modules" ".next"))
  '(projectile-indexing-method 'native)
  '(safe-local-variable-values
-   '((cider-preferred-build-tool . shadow-cljs)
+   '((sql-connection-alist
+      (docker-local-bank-gateway
+       (sql-product 'mysql)
+       (sql-server "127.0.0.1")
+       (sql-user "bank-gateway-owner")
+       (sql-password "bankgatewayowner")
+       (sql-database "bank-gateway")
+       (sql-port 5555))
+      (docker-local-bank-gateway
+       (sql-product 'mysql)
+       (sql-server "127.0.0.1")
+       (sql-user "bank-gateway-owner")
+       (sql-password "bankgatewayowner")
+       (sql-database "bank-gateway")
+       (sql-port 4444)))
+     (initial-buffer-choice . "./project.clj")
+     (cider-preferred-build-tool . shadow-cljs)
      (cider-shadow-default-options . "app")
      (cider-default-cljs-repl . shadow)
      (cider-shadow-watched-builds "app")

@@ -335,6 +335,9 @@ server-after-make-frame-functions to use Fira Code with emacs --daemon and emacs
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration))
 
+(with-eval-after-load 'prog-mode
+  (add-hook 'prog-mode-hook #'text-scale-mode))
+
 (defun fix-ediff-size ()
   (with-selected-window (get-buffer-window "*Ediff Control Panel*")
     (setq window-size-fixed t)
