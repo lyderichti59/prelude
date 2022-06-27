@@ -3,7 +3,7 @@
 
 (require 'recentf)
 
-(setq sublima-cache-directory (concat user-emacs-directory ".cache/sublima"))
+(setq sublima-cache-directory (concat org-directory "/private"))
 
 (add-to-list 'recentf-exclude (expand-file-name sublima-cache-directory))
 (make-directory (expand-file-name sublima-cache-directory) t)
@@ -12,7 +12,7 @@
 ;; Create Sublima Scratch Buffer
 (defun sublima-scratch()
   (interactive)
-  (let ((scratch-file (make-temp-file (expand-file-name (concat sublima-cache-directory "/scratch-")))))
+  (let ((scratch-file (make-temp-file (expand-file-name (concat sublima-cache-directory "/scratch-")) nil ".org")))
     (find-file scratch-file)))
 
 
