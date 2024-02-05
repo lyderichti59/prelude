@@ -28,7 +28,7 @@
  '(column-number-mode t)
  '(cursor-type 'bar)
  '(custom-safe-themes
-   '("81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "57e3f215bef8784157991c4957965aa31bac935aca011b29d7d8e113a652b693" "2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
+   '("603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" "81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "57e3f215bef8784157991c4957965aa31bac935aca011b29d7d8e113a652b693" "2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
  '(ediff-split-window-function 'split-window-horizontally)
  '(exec-path-from-shell-variables
    '("PATH" "MANPATH" "LEIN_USERNAME" "LEIN_PASSWORD" "NIX_PATH" "NOTMUCH_CONFIG" "PASSWORD_STORE_DIR"))
@@ -72,7 +72,7 @@
  '(org-capture-templates
    `(("p" "Protocol" entry
       (file+headline ,(concat org-directory "random.org")
-                     "Inbox")
+		     "Inbox")
       "* [[%:link][%:description]]
 Captured On: %U
 #+BEGIN_QUOTE
@@ -83,7 +83,7 @@ Captured On: %U
 ")
      ("L" "Protocol Link" entry
       (file+headline ,(concat org-directory "private/" "random.org")
-                     "Inbox")
+		     "Inbox")
       "* %? [[%:link][%:description]]
 Captured On: %U")))
  '(org-directory "~/Bureau/braindump/")
@@ -115,11 +115,10 @@ Captured On: %U")))
      (sequence "TODO(t)" "NEXT(n)" "WIP(w)" "DONE(d)")))
  '(org-use-fast-todo-selection 'expert)
  '(package-selected-packages
-   '(paredit gnu-elpa-keyring-update hcl-mode persp-projectile perspective ripgrep projectile-ripgrep csv helm-nixos-options company-nixos-options image+ plantuml-mode dockerfile-mode csv-mode js2-mode windresize vterm-toggle vterm centaur-tabs counsel-projectile helpful doom-modeline lsp-treemacs nix-mode rjsx-mode tldr helm-projectile helm async avy bind-key dash dash-functional gh git-commit ht inflections logito lsp-mode markdown-mode marshal multiple-cursors pcache prescient transient with-editor rust-mode org-roam visual-regexp-steroids visual-regexp all-the-icons-dired all-the-icons-ivy-rich all-the-icons neotree tagedit scss-mode anakondo docker-compose-mode aggressive-indent pretty-symbols fira-code-mode use-package ta clojure-snippets afternoon-theme dracula-theme flycheck-clj-kondo command-log-mode clj-refactor cider clojure-mode-extra-font-locking clojure-mode yaml-mode web-mode lsp-ui json-mode rainbow-mode elisp-slime-nav rainbow-delimiters company counsel swiper ivy-prescient ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
+   '(paredit gnu-elpa-keyring-update hcl-mode persp-projectile perspective ripgrep projectile-ripgrep csv helm-nixos-options company-nixos-options image+ plantuml-mode dockerfile-mode csv-mode js2-mode windresize vterm-toggle vterm centaur-tabs counsel-projectile helpful doom-modeline lsp-treemacs nix-mode rjsx-mode tldr helm-projectile helm async avy bind-key dash dash-functional gh git-commit ht inflections logito lsp-mode markdown-mode marshal multiple-cursors pcache prescient transient with-editor rust-mode org-roam visual-regexp-steroids visual-regexp all-the-icons-dired all-the-icons-ivy-rich all-the-icons neotree tagedit scss-mode anakondo docker-compose-mode aggressive-indent pretty-symbols fira-code-mode use-package ta clojure-snippets afternoon-theme flycheck-clj-kondo command-log-mode clj-refactor cider clojure-mode-extra-font-locking clojure-mode yaml-mode web-mode lsp-ui json-mode rainbow-mode elisp-slime-nav rainbow-delimiters company counsel swiper ivy-prescient ivy exec-path-from-shell zop-to-char zenburn-theme which-key volatile-highlights undo-tree super-save smartrep smartparens operate-on-number move-text magit projectile imenu-anywhere hl-todo guru-mode gitignore-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major crux browse-kill-ring anzu ag ace-window))
  '(plantuml-default-exec-mode 'jar)
  '(plantuml-jar-path "/Users/lyderic.dutillieux/bin/plantuml.jar")
  '(prelude-flyspell nil)
- '(prelude-theme 'dracula-theme)
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    '(".idea" ".vscode" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" ".ccls-cache" ".cache" ".clangd" "node_modules" ".next"))
@@ -146,12 +145,12 @@ Captured On: %U")))
      (cider-default-cljs-repl . shadow)
      (cider-shadow-watched-builds "app")
      (eval font-lock-add-keywords nil
-           `((,(concat "("
-                       (regexp-opt
-                        '("sp-do-move-op" "sp-do-move-cl" "sp-do-put-op" "sp-do-put-cl" "sp-do-del-op" "sp-do-del-cl")
-                        t)
-                       "\\_>")
-              1 'font-lock-variable-name-face)))))
+	   `((,(concat "("
+		       (regexp-opt
+			'("sp-do-move-op" "sp-do-move-cl" "sp-do-put-op" "sp-do-put-cl" "sp-do-del-op" "sp-do-del-cl")
+			t)
+		       "\\_>")
+	      1 'font-lock-variable-name-face)))))
  '(send-mail-function 'sendmail-send-it)
  '(size-indication-mode t)
  '(sp-base-key-bindings 'paredit)
