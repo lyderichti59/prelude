@@ -30,6 +30,7 @@
  '(custom-safe-themes
    '("603a831e0f2e466480cdc633ba37a0b1ae3c3e9a4e90183833bc4def3421a961" "81c3de64d684e23455236abde277cda4b66509ef2c28f66e059aa925b8b12534" "57e3f215bef8784157991c4957965aa31bac935aca011b29d7d8e113a652b693" "2dff5f0b44a9e6c8644b2159414af72261e38686072e063aa66ee98a2faecf0e" default))
  '(ediff-split-window-function 'split-window-horizontally)
+ '(editorconfig-exclude-modes '(org-mode))
  '(exec-path-from-shell-variables
    '("PATH" "MANPATH" "LEIN_USERNAME" "LEIN_PASSWORD" "NIX_PATH" "NOTMUCH_CONFIG" "PASSWORD_STORE_DIR"))
  '(fira-code-mode-disabled-ligature '("[]" "#{" "#(" "#_" "#_(" "x"))
@@ -72,7 +73,7 @@
  '(org-capture-templates
    `(("p" "Protocol" entry
       (file+headline ,(concat org-directory "random.org")
-		     "Inbox")
+                     "Inbox")
       "* [[%:link][%:description]]
 Captured On: %U
 #+BEGIN_QUOTE
@@ -83,7 +84,7 @@ Captured On: %U
 ")
      ("L" "Protocol Link" entry
       (file+headline ,(concat org-directory "private/" "random.org")
-		     "Inbox")
+                     "Inbox")
       "* %? [[%:link][%:description]]
 Captured On: %U")))
  '(org-directory "~/Bureau/braindump/")
@@ -145,12 +146,12 @@ Captured On: %U")))
      (cider-default-cljs-repl . shadow)
      (cider-shadow-watched-builds "app")
      (eval font-lock-add-keywords nil
-	   `((,(concat "("
-		       (regexp-opt
-			'("sp-do-move-op" "sp-do-move-cl" "sp-do-put-op" "sp-do-put-cl" "sp-do-del-op" "sp-do-del-cl")
-			t)
-		       "\\_>")
-	      1 'font-lock-variable-name-face)))))
+           `((,(concat "("
+                       (regexp-opt
+                        '("sp-do-move-op" "sp-do-move-cl" "sp-do-put-op" "sp-do-put-cl" "sp-do-del-op" "sp-do-del-cl")
+                        t)
+                       "\\_>")
+              1 'font-lock-variable-name-face)))))
  '(send-mail-function 'sendmail-send-it)
  '(size-indication-mode t)
  '(sp-base-key-bindings 'paredit)
