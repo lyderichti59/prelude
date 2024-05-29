@@ -2,6 +2,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Install all the packages loaded from the custom.el
+(unless package-archive-contents
+  (message "Refreshing package contents, this may take a while or hang if this laptop has no internet connection...")
+  (package-refresh-contents))
+
 (package-install-selected-packages)
 
 ;;;;;;;;;;;;;;;;;;
