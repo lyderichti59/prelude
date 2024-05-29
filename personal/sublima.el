@@ -34,7 +34,8 @@
 
 
 ;; Open scratch buffers on startup
-(find-file (concat sublima-cache-directory "/*") t)
+(dolist (scratch-file (file-expand-wildcards (concat sublima-cache-directory "/scratch-*")))
+  (find-file scratch-file))
 
 
 ;; Auto Save Scratch buffers on focus lost

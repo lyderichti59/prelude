@@ -155,7 +155,7 @@
 
 ;; Org mode tuning
 (load-library "find-lisp")
-(setq org-agenda-files (directory-files-recursively (concat desktop "braindump") "\.org$"))
+;(setq org-agenda-files (directory-files-recursively (concat desktop "braindump") "\.org$")) ; This opens all files in new buffers, keep commented to avoid that
 (setq org-directory (concat desktop "braindump"))
 (setq org-replace-disputed-keys 1)
 (add-hook 'org-shiftup-final-hook 'windmove-up)
@@ -482,18 +482,19 @@ server-after-make-frame-functions to use Fira Code with emacs --daemon and emacs
 ;; Note taking with a shortcut
 (defun open-notes ()
   (interactive)
-  (find-file (concat desktop "braindump/private/random.org")))
+  (find-file (concat desktop "braindump/private/index.org")))
 
 (defun open-config ()
   (interactive)
   (find-file (concat user-emacs-directory "personal/user_config.el")))
 
-
 (load (concat user-emacs-directory "personal/sublima.el"))
+(open-notes)
 
 (global-set-key [f6] 'open-notes)
-(global-set-key [f7] 'sublima-scratch)
 (global-set-key [f9] 'open-config)
+(global-set-key [f7] 'sublima-scratch)
+
 
 ;; CSV FILES
 ;;;;;;;;;;;;;;;;;;;;;;;;
