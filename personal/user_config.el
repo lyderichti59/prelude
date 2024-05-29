@@ -12,7 +12,7 @@
 ;;;;;;;;;;;;;;;;;;
 ;; HOST
 ;;;;;;;;;;;;;;;;;;
-(setq desktop (if (file-exists-p "~/Bureau/") "~/Bureau/" "~/Desktop/"))
+(setq desktop (if (file-exists-p "~/Desktop/") "~/Desktop/" "~/Bureau/"))
 
 ;;;;;;;;;;;;;;;;;;
 ;; UI
@@ -24,6 +24,7 @@
 
 (customize-dracula)
 (global-whitespace-mode 0)
+
 ;; Beautiful modeline on the bottom (less verbose than the default one and
 ;; supports GUI components)
 (defun setup-doom-modeline-icons (&optional frame)
@@ -150,12 +151,7 @@
 
 ;; Org mode tuning
 (load-library "find-lisp")
-(defun update-org-files ()
-  (interactive)
-  (setq org-agenda-files
-        (find-lisp-find-files (concat desktop "braindump") "\.org$")))
-(update-org-files)
-
+(setq org-agenda-files (directory-files-recursively (concat desktop "braindump") "\.org$"))
 (setq org-directory (concat desktop "braindump"))
 (setq org-replace-disputed-keys 1)
 (add-hook 'org-shiftup-final-hook 'windmove-up)
@@ -194,7 +190,6 @@
 (setq neo-autorefresh t)
 (require 'neotree)
 
-(global-set-key [f8] 'neotree-show)
 (cl-case window-system
   (mac (setq neo-default-system-application "open"))
   (ns (setq neo-default-system-application "open")))
@@ -229,7 +224,7 @@
   :hook
   (after-init . org-roam-mode)
   :custom
-  (org-roam-directory "~/Bureau/braindump/public")
+  (org-roam-directory (concat desktop "braindump/public"))
   :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
@@ -485,15 +480,20 @@ server-after-make-frame-functions to use Fira Code with emacs --daemon and emacs
   (interactive)
   (find-file (concat desktop "braindump/private/random.org")))
 
+(defun open-config ()
+  (interactive)
+  (find-file (concat user-emacs-directory "personal/user_config.el")))
+
+
 (load (concat user-emacs-directory "personal/sublima.el"))
 
 (global-set-key [f6] 'open-notes)
 (global-set-key [f7] 'sublima-scratch)
+(global-set-key [f9] 'open-config)
 
 ;; CSV FILES
 ;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'csv-highlight)
-(global-set-key (kbd "<f6>") (lambda() (interactive)(find-file "~/Bureau/braindump/private/random.org")))
 
 ;; DOTFILES
 ;;;;;;;;;;;;;;;;;;;;;;;
